@@ -1,6 +1,6 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec } from './config/swagger';
+import { swaggerSpec } from './config/swagger'; 
 
 import usuarioRoutes from './routes/UsuarioRoute';
 import candidatoRoutes from './routes/CandidatoRoute';
