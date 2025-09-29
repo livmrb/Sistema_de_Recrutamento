@@ -1,5 +1,9 @@
 import { Router } from 'express';
 import CandidatoController from '../controllers/CandidatoController';
+import validateBody from '../middlewares/validateBody';
+import { atualizarCandidatoSchema, criarCandidatoSchema, idCandidatoParamSchema, } from '../schemas/candidatoSchema';
+import validateQuery from '../middlewares/validateQuery';
+import validateParams from '../middlewares/validateParams';
 
 /**
  * @swagger
@@ -18,6 +22,8 @@ const router = Router();
  *     responses:
  *       200:
  *         description: Lista de candidatos
+ *       404: 
+ *         description: Erro ao listar candidatos
  */
 router.get('/', CandidatoController.findAll);
 
@@ -37,8 +43,12 @@ router.get('/', CandidatoController.findAll);
  *     responses:
  *       200:
  *         description: Candidato encontrado
+ *       404: 
+ *         description: Candidato não encontrado
  */
-router.get('/:id', CandidatoController.findOne);
+router.get('/:id',
+    validateParams(idCandidatoParamSchema),
+    CandidatoController.findOne);
 
 /**
  * @swagger
@@ -62,8 +72,12 @@ router.get('/:id', CandidatoController.findOne);
  *     responses:
  *       201:
  *         description: Candidato criado
+ *       400:
+ *         description: Candidato inválido
  */
-router.post('/', CandidatoController.create);
+router.post('/',
+    validateBody(criarCandidatoSchema),
+    CandidatoController.create);
 
 /**
  * @swagger
@@ -93,8 +107,14 @@ router.post('/', CandidatoController.create);
  *     responses:
  *       200:
  *         description: Candidato atualizado
+ *       400:
+ *          description: Erro ao atualizar
+ *
  */
-router.put('/:id', CandidatoController.update);
+router.put('/:id',
+    validateBody(atualizarCandidatoSchema),
+    validateParams(idCandidatoParamSchema),
+    CandidatoController.update);
 
 /**
  * @swagger
@@ -111,7 +131,11 @@ router.put('/:id', CandidatoController.update);
  *     responses:
  *       204:
  *         description: Candidato deletado
+ *       400: 
+ *         description: Erro ao deletar candidato
  */
-router.delete('/:id', CandidatoController.remove);
+router.delete('/:id',
+    validateParams(idCandidatoParamSchema),
+    CandidatoController.remove);
 
 export default router;
