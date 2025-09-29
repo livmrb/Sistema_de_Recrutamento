@@ -1,5 +1,10 @@
 import { Router } from 'express';
 import EntrevistadorController from '../controllers/EntrevistadorController';
+import validateParams from '../middlewares/validateParams';
+import { atualizarEntrevistadorSchema, criarEntrevistadorSchema, idEntrevistadorParamSchema } from '../schemas/entrevistadorSchema';
+import validateBody from '../middlewares/validateBody';
+import validateQuery from '../middlewares/validateQuery';
+
 
 /**
  * @swagger
@@ -18,8 +23,10 @@ const router = Router();
  *     responses:
  *       200:
  *         description: Lista de entrevistadores
+ *       400: 
+ *         description: Erro ao listar entrevistadores
  */
-router.get('/', EntrevistadorController.findAll);
+router.get('/',EntrevistadorController.findAll);
 
 /**
  * @swagger
@@ -37,7 +44,9 @@ router.get('/', EntrevistadorController.findAll);
  *       200:
  *         description: Entrevistador encontrado
  */
-router.get('/:id', EntrevistadorController.findOne);
+router.get('/:id',
+    validateParams(idEntrevistadorParamSchema),
+    EntrevistadorController.findOne);
 
 /**
  * @swagger
@@ -59,8 +68,12 @@ router.get('/:id', EntrevistadorController.findOne);
  *     responses:
  *       201:
  *         description: Entrevistador criado
+ *       400:
+ *         description: Entrevistador inválido
  */
-router.post('/', EntrevistadorController.create);
+router.post('/',
+    validateBody(criarEntrevistadorSchema),
+    EntrevistadorController.create);
 
 /**
  * @swagger
@@ -88,8 +101,14 @@ router.post('/', EntrevistadorController.create);
  *     responses:
  *       200:
  *         description: Entrevistador atualizado
+ *       400:
+ *          description: Erro ao atualizar
+ *
  */
-router.put('/:id', EntrevistadorController.update);
+router.put('/:id',
+    validateParams(idEntrevistadorParamSchema),
+    validateBody(atualizarEntrevistadorSchema),
+    EntrevistadorController.update);
 
 /**
  * @swagger
@@ -106,7 +125,11 @@ router.put('/:id', EntrevistadorController.update);
  *     responses:
  *       204:
  *         description: Entrevistador deletado
+ *       400: 
+ *         description: Erro ao deletar candidato
  */
-router.delete('/:id', EntrevistadorController.remove);
+router.delete('/:id',
+    validateParams(idEntrevistadorParamSchema),
+    EntrevistadorController.remove);
 
 export default router;

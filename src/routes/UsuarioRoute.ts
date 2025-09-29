@@ -1,5 +1,13 @@
 import { Router } from 'express';
 import UsuarioController from '../controllers/UsuarioController';
+import validateParams from '../middlewares/validateParams';
+import validateBody from '../middlewares/validateBody';
+import validateQuery from '../middlewares/validateQuery';
+import {
+    criarUsuarioSchema,
+    atualizarUsuarioSchema,
+    idParamSchema
+} from '../schemas/usuarioSchema';
 
 /** 
  * @swagger
@@ -18,6 +26,8 @@ const router = Router();
  *     responses:
  *       200:
  *         description: Lista de usuários
+ *       400: 
+ *         description: Erro ao listar usuários
  */
 router.get('/', UsuarioController.findAll);
 
@@ -39,7 +49,9 @@ router.get('/', UsuarioController.findAll);
  *       404:
  *         description: Usuário não encontrado
  */
-router.get('/:id', UsuarioController.findOne);
+router.get('/:id',
+    validateParams(idParamSchema),
+    UsuarioController.findOne);
 
 /**
  * @swagger
@@ -64,7 +76,9 @@ router.get('/:id', UsuarioController.findOne);
  *       201:
  *         description: Usuário criado
  */
-router.post('/', UsuarioController.create);
+router.post('/',
+    validateBody(criarUsuarioSchema),
+    UsuarioController.create);
 
 /**
  * @swagger
@@ -94,8 +108,13 @@ router.post('/', UsuarioController.create);
  *     responses:
  *       200:
  *         description: Usuário atualizado
+ *       400: 
+ *         description: Erro ao atualizar usuário
  */
-router.put('/:id', UsuarioController.update);
+router.put('/:id',
+    validateParams(idParamSchema),
+    validateBody(atualizarUsuarioSchema),
+    UsuarioController.update);
 
 /**
  * @swagger
@@ -112,7 +131,11 @@ router.put('/:id', UsuarioController.update);
  *     responses:
  *       204:
  *         description: Usuário deletado
+ *       400: 
+ *         description: Erro ao deletar usuário
  */
-router.delete('/:id', UsuarioController.remove);
+router.delete('/:id',
+    validateParams(idParamSchema),
+    UsuarioController.remove);
 
 export default router;
