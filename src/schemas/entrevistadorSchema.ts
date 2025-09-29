@@ -18,5 +18,4 @@ export const idEntrevistadorParamSchema = z.object({
   }),
 });
 
-// Tipagem para o body do criar entrevistador
 export type CriarEntrevistadorBody = z.infer<typeof criarEntrevistadorSchema>;

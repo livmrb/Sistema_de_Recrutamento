@@ -1,5 +1,8 @@
 import { Router } from 'express';
 import EntrevistaController from '../controllers/EntrevistaController';
+import validateParams from '../middlewares/validateParams';
+import { atualizarEntrevistaSchema, criarEntrevistaSchema, idEntrevistaParamSchema } from '../schemas/entrevistaSchema';
+import validateBody from '../middlewares/validateBody';
 
 /**
  * @swagger
@@ -37,7 +40,9 @@ router.get('/', EntrevistaController.findAll);
  *       200:
  *         description: Entrevista encontrada
  */
-router.get('/:id', EntrevistaController.findOne);
+router.get('/:id',
+    validateParams(idEntrevistaParamSchema),
+    EntrevistaController.findOne);
 
 /**
  * @swagger
@@ -63,7 +68,9 @@ router.get('/:id', EntrevistaController.findOne);
  *       201:
  *         description: Entrevista criada
  */
-router.post('/', EntrevistaController.create);
+router.post('/',
+    validateBody(criarEntrevistaSchema),
+    EntrevistaController.create);
 
 /**
  * @swagger
@@ -95,7 +102,10 @@ router.post('/', EntrevistaController.create);
  *       200:
  *         description: Entrevista atualizada
  */
-router.put('/:id', EntrevistaController.update);
+router.put('/:id',
+    validateParams(idEntrevistaParamSchema),
+    validateBody(atualizarEntrevistaSchema),
+    EntrevistaController.update);
 
 
 /**
@@ -114,6 +124,8 @@ router.put('/:id', EntrevistaController.update);
  *       204:
  *         description: Entrevista deletada
  */
-router.delete('/:id', EntrevistaController.remove);
+router.delete('/:id',
+    validateParams(idEntrevistaParamSchema),
+    EntrevistaController.remove);
 
 export default router;

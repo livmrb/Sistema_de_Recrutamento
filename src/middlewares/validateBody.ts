@@ -1,4 +1,3 @@
-// src/middlewares/validateBody.ts
 import { Request, Response, NextFunction } from 'express';
 import { ZodError, ZodTypeAny } from 'zod';
 

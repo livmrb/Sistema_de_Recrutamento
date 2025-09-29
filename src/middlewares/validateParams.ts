@@ -8,7 +8,6 @@ const validateParams = (schema: ZodTypeAny) => {
       schema.parse(req.params);
       next();
     } catch (err) {
-      // força o TypeScript a reconhecer como ZodError
       const error = err as ZodError<any>;
       if (error instanceof ZodError) {
         const formattedErrors = error.issues.map(issue => ({
