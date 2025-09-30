@@ -37,7 +37,7 @@ A seguir um passo a passo:
 3. **Configurar variáveis de ambiente** <br>
 Crie um arquivo .env com as chaves necessárias:
   ```bash
-  
+  DATABASE_URL="file:./dev.db"
   ```
 
 4. **Executar migrações / sincronizar banco**
