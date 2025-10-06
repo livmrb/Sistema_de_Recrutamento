@@ -1,24 +1,36 @@
 # Sistema de Recrutamento - API Backend
-
-Este projeto é um **trabalho acadêmico** desenvolvido para compor parte da nota da disciplina **Tópicos Especiais em TI**, com foco na construção de uma **API REST** para um sistema de recrutamento, utilizando tecnologias modernas do ecossistema **TypeScript**.
+Este projeto é um trabalho acadêmico desenvolvido para a disciplina **Tópicos Especiais em TI**, com foco na construção de uma API RESTful para gerenciamento de processos seletivos. A aplicação foi construída com tecnologias modernas do ecossistema JavaScript/TypeScript e segue boas práticas de organização, validação, documentação e persistência de dados.
 
 ## Objetivo
-
-Desenvolver uma API backend simples para um sistema de recrutamento.
+Desenvolver uma API backend robusta para um sistema de recrutamento, com os seguintes recursos:
+- Cadastro e gerenciamento de Candidatos
+- Gerenciamento de Entrevistadores
+- Controle das Entrevistas
+- Integração com banco de dados relacional
+- Validação de dados
+- Documentação completa via Swagger
 
 ## Tecnologias utilizadas
-
 - Linguagem: TypeScript
-- Servidor / Framework web: Node.js + Express
+- Framework HTTP: Express.js
 - Validação de dados: Zod
 - ORM / acesso ao banco: Prisma
-- Banco de dados: SQLite
+- Banco de dados: PostgreSQL
 - Documentação da API: Swagger (via swagger-ui-express)
-- Gerenciamento de variáveis de ambiente: dotenv
-- Autenticação / segurança: JSON Web Token (JWT), bcrypt (ou similar)
-- Ferramenta de desenvolvimento: ts-node-dev (para recarga automática em ambiente de desenvolvimento)
+- Variáveis de ambiente: dotenv
+- Segurança / Autenticação: JWT, bcrypt
+- Desenvolvimento: ts-node-dev
 
-## Como executar / rodar o projeto
+## Requisitos atendidos
+Este projeto cumpre **todos os requisitos definidos para a avaliação acadêmica**:
+- 3+ Resources com 5 endpoints cada (GET, GET by ID, POST, PUT, DELETE)
+- Relacionamento com chave estrangeira (@relation) entre Entrevista, Candidato e Entrevistador
+- GET com include retornando dados de tabelas relacionadas
+- Swagger documentado para todos os endpoints
+- Validações com Zod para corpo da requisição e parâmetros
+- Integração com banco PostgreSQL via Prisma
+
+## Como executar o projeto
 
 A seguir um passo a passo:
 
@@ -35,12 +47,16 @@ A seguir um passo a passo:
   ```
 
 3. **Configurar variáveis de ambiente** <br>
-Crie um arquivo .env com as chaves necessárias:
+Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
   ```bash
-  DATABASE_URL="file:./dev.db"
+ # Exemplo para PostgreSQL
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/sistema_recrutamento"
+PORT=3000
+JWT_SECRET="sua_chave_secreta"
+
   ```
 
-4. **Executar migrações / sincronizar banco**
+4. **Executar migrações do banco de dados**
   ```bash
   npx prisma migrate dev
   # ou
@@ -53,7 +69,12 @@ Crie um arquivo .env com as chaves necessárias:
   # ou
   yarn dev
   ```
-6. **Acessar no navegador** 
+6. **Acessar a API**
  ```bash
-  http://localhost:3000
+# A API estará disponível em:
+http://localhost:3000
+# A documentação Swagger estará em:
+http://localhost:3000/api-docs
+  ```
+
  
