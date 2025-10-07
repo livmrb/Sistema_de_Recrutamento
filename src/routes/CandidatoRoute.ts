@@ -112,8 +112,8 @@ router.post('/',
  *
  */
 router.put('/:id',
-    validateBody(atualizarCandidatoSchema),
     validateParams(idCandidatoParamSchema),
+    validateBody(atualizarCandidatoSchema),
     CandidatoController.update);
 
 /**
