@@ -1,80 +1,37 @@
-# Sistema de Recrutamento - API Backend
-Este projeto é um trabalho acadêmico desenvolvido para a disciplina **Tópicos Especiais em TI**, com foco na construção de uma API RESTful para gerenciamento de processos seletivos. A aplicação foi construída com tecnologias modernas do ecossistema JavaScript/TypeScript e segue boas práticas de organização, validação, documentação e persistência de dados.
+# Sistema de Recrutamento
 
-## Objetivo
-Desenvolver uma API backend robusta para um sistema de recrutamento, com os seguintes recursos:
-- Cadastro e gerenciamento de Candidatos
-- Gerenciamento de Entrevistadores
-- Controle das Entrevistas
-- Integração com banco de dados relacional
-- Validação de dados
-- Documentação completa via Swagger
+Aplicacao separada em duas partes independentes:
+- **backend/**: API Express + Prisma + Swagger.
+- **frontend/**: SPA Vite/React com Tailwind.
 
-## Tecnologias utilizadas
-- Linguagem: TypeScript
-- Framework HTTP: Express.js
-- Validação de dados: Zod
-- ORM / acesso ao banco: Prisma
-- Banco de dados: PostgreSQL
-- Documentação da API: Swagger (via swagger-ui-express)
-- Variáveis de ambiente: dotenv
-- Segurança / Autenticação: JWT, bcrypt
-- Desenvolvimento: ts-node-dev
+## Estrutura
+```
+backend/
+  src/            # Codigo da API (rotas, controllers, middlewares, schemas)
+  prisma/         # Schema e migracoes
+  package.json    # Scripts e dependencias do backend
+frontend/
+  src/            # React (paginas, componentes, hooks, services)
+  package.json    # Scripts e dependencias do frontend
+```
 
-## Requisitos atendidos
-Este projeto cumpre **todos os requisitos definidos para a avaliação acadêmica**:
-- 3+ Resources com 5 endpoints cada (GET, GET by ID, POST, PUT, DELETE)
-- Relacionamento com chave estrangeira (@relation) entre Entrevista, Candidato e Entrevistador
-- GET com include retornando dados de tabelas relacionadas
-- Swagger documentado para todos os endpoints
-- Validações com Zod para corpo da requisição e parâmetros
-- Integração com banco PostgreSQL via Prisma
+## Como rodar o backend
+```
+cd backend
+npm install
+# criar arquivo .env com DATABASE_URL, PORT, JWT_SECRET etc
+npx prisma migrate dev   # ou prisma db push
+npm run dev              # desenvolvimento
+npm run build && npm start
+```
+Swagger: http://localhost:3000/api-docs
 
-## Como executar o projeto
+## Como rodar o frontend
+```
+cd frontend
+npm install
+npm run dev
+# build: npm run build; preview: npm run preview
+```
 
-A seguir um passo a passo:
-
-1. **Clonar o repositório**
-  ```bash
-  git clone https://github.com/livmrb/Sistema_de_Recrutamento.git
-  cd Sistema_de_Recrutamento
-  ```
-2. **Instalar dependências**
-  ```bash
-  npm install
-  # ou
-  yarn install
-  ```
-
-3. **Configurar variáveis de ambiente** <br>
-Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
-  ```bash
- # Exemplo para PostgreSQL
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/sistema_recrutamento"
-PORT=3000
-JWT_SECRET="sua_chave_secreta"
-
-  ```
-
-4. **Executar migrações do banco de dados**
-  ```bash
-  npx prisma migrate dev
-  # ou
-  npx prisma db push
-  ```
-  
-5. **Iniciar aplicação**
-  ```bash
-  npm run dev
-  # ou
-  yarn dev
-  ```
-6. **Acessar a API**
- ```bash
-# A API estará disponível em:
-http://localhost:3000
-# A documentação Swagger estará em:
-http://localhost:3000/api-docs
-  ```
-
- 
+Ajuste a `baseURL` em `frontend/src/services/api.ts` para apontar para o host do backend quando necessario.

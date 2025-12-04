@@ -2,6 +2,7 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './config/swagger'; 
 
+import authRoutes from './routes/AuthRoute';
 import usuarioRoutes from './routes/UsuarioRoute';
 import candidatoRoutes from './routes/CandidatoRoute';
 import entrevistadorRoutes from './routes/EntrevistadorRoute';
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.use('/auth', authRoutes);
 app.use('/usuarios', usuarioRoutes);
 app.use('/candidatos', candidatoRoutes);
 app.use('/entrevistadores', entrevistadorRoutes);

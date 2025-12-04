@@ -1,13 +1,12 @@
 import prisma from '../config/prisma';
 
 export default {
-  findAll: () =>
-    prisma.entrevista.findMany({
-      include: {
-        candidato: true,
-        entrevistador: true,
-      },
-    }),
+  findAll: () => prisma.entrevista.findMany({
+    include: {
+      candidato: true,
+      entrevistador: true,
+    },
+  }),
 
   findOne: (id: number) =>
     prisma.entrevista.findUnique({

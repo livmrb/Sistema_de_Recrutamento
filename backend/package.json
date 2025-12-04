@@ -1,16 +1,24 @@
 {
-  "name": "sistema_de_recrutamento",
+  "name": "sistema_de_recrutamento-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
     "dev": "nodemon src/server.ts",
-    "start": "node dist/server.js"
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed",
+    "seed": "npm run prisma:seed"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "API Express/Prisma do Sistema de Recrutamento",
   "dependencies": {
     "@prisma/client": "^6.16.2",
     "dotenv": "^17.2.2",

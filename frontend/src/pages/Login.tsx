@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
 const loginSchema = z.object({
-  email: z.string().email("Email inválido"),
+  email: z.string().email("Email invalido"),
   password: z.string().min(4, "A senha deve ter pelo menos 4 caracteres"),
 });
 
@@ -21,7 +21,7 @@ export default function Login() {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5173/auth/login",
+        "http://localhost:3000/auth/login",
         data
       );
 
@@ -32,7 +32,7 @@ export default function Login() {
       alert("Login realizado com sucesso!");
       // redirecionar para o dashboard futuramente
     } catch (err) {
-      alert("Credenciais inválidas. Tente novamente.");
+      alert("Credenciais invalidas. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -84,4 +84,4 @@ export default function Login() {
       </div>
     </div>
   );
-}       
+}
