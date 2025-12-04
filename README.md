@@ -14,8 +14,10 @@ O Sistema de Recrutamento é uma aplicação full-stack que permite:
 - Deploy completo (frontend + backend + banco) na nuvem
 
 # Tecnologias Utilizadas
-- Backend: Node.js, Express.js, TypeScript, Prisma ORM, PostgreSQL, Zod, Swagger
-- Frontend: React + Vite, TypeScript, Axios, Zod, React Hook Form
+Backend: 
+- Node.js, Express.js, TypeScript, Prisma ORM, PostgreSQL, Zod, Swagger
+Frontend:
+- React + Vite, TypeScript, Axios, Zod, React Hook Form
 
 # Estrutura do Projeto
 /backend <br>
@@ -35,7 +37,7 @@ package.json <br><br>
 /services <br>
 /schemas <br>
 
-# Recursos da API (3 Resources exigidos)
+# Recursos da API 
 - Vagas (/vagas): GET, GET/:id, POST, PUT/:id, DELETE/:id
 - Candidatos (/candidatos): GET, GET/:id, POST, PUT/:id, DELETE/:id
 - Aplicações (/aplicacoes): GET, GET/:id, POST, PUT/:id, DELETE/:id -> Possui relação com Vagas e Candidatos através de vagaId e candidatoId
@@ -44,42 +46,12 @@ package.json <br><br>
 Model de exemplo:
 - Aplicacao { id, candidatoId, vagaId, relação com Candidato e Vaga }
 
-# Exemplo de GET com include (Requisito 3)
-const aplicacoes = await prisma.aplicacao.findMany({ <br>
-include: { candidato: true, vaga: true } <br>
-}); <br>
-
-# Documentação Swagger
-A API possui Swagger completo com schemas, models, endpoints, exemplos de entrada e saída e mensagens de erro. <br><br>
-
-Acessível em: /api-docs <br>
-
-# Validação com Zod
-- Exemplo de schema:
-export const criarVagaSchema = z.object({ <br>
-titulo: z.string().min(3), <br>
-descricao: z.string(), <br>
-salario: z.number().positive() <br>
-}); <br>
-Todas as rotas usam validação Zod em middleware. <br>
-
-# PostgreSQL + Prisma
-- Criar tabelas: npx prisma migrate dev 
-- Abrir Prisma Studio: npx prisma studio
-
-# Deploy (Requisito da atividade)
+# Deploy
 - Backend Deploy: https://
 - Frontend Deploy: https://
 - Banco PostgreSQL: https://
 
-# Integração Front ↔ Back
-O frontend usa Axios configurado com baseURL do backend.<br> <br>
-Exemplo:
-export const api = axios.create({ baseURL: "https://seu-backend.com <br>
-" }); <br>
-await api.post("/vagas", dadosValidados); <br>
-
-# Funcionalidades exigidas (todas atendidas)
+# Funcionalidades exigidas
 - CRUD para Vagas
 - CRUD para Candidatos
 - CRUD para Aplicações
@@ -98,13 +70,13 @@ await api.post("/vagas", dadosValidados); <br>
 
 # Como Rodar o Projeto Localmente
 
-- Backend:
+- Backend: <br>
 cd backend <br>
 npm install <br>
 npx prisma migrate dev <br>
 npm run dev <br>
 
-- Frontend:
+- Frontend: <br>
 cd frontend <br>
 npm install <br>
 npm run dev <br>
