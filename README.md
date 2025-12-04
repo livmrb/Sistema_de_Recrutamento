@@ -1,80 +1,209 @@
-# Sistema de Recrutamento - API Backend
-Este projeto é um trabalho acadêmico desenvolvido para a disciplina **Tópicos Especiais em TI**, com foco na construção de uma API RESTful para gerenciamento de processos seletivos. A aplicação foi construída com tecnologias modernas do ecossistema JavaScript/TypeScript e segue boas práticas de organização, validação, documentação e persistência de dados.
 
-## Objetivo
-Desenvolver uma API backend robusta para um sistema de recrutamento, com os seguintes recursos:
-- Cadastro e gerenciamento de Candidatos
-- Gerenciamento de Entrevistadores
-- Controle das Entrevistas
-- Integração com banco de dados relacional
-- Validação de dados
-- Documentação completa via Swagger
+🧩 Sistema de Recrutamento – Backend + Frontend
 
-## Tecnologias utilizadas
-- Linguagem: TypeScript
-- Framework HTTP: Express.js
-- Validação de dados: Zod
-- ORM / acesso ao banco: Prisma
-- Banco de dados: PostgreSQL
-- Documentação da API: Swagger (via swagger-ui-express)
-- Variáveis de ambiente: dotenv
-- Segurança / Autenticação: JWT, bcrypt
-- Desenvolvimento: ts-node-dev
+Este projeto é um trabalho acadêmico desenvolvido para a disciplina **Tópicos Especiais em TI**, composto por **uma API RESTful (backend)** e **uma aplicação web (frontend)** para gerenciamento de processos seletivos.
 
-## Requisitos atendidos
-Este projeto cumpre **todos os requisitos definidos para a avaliação acadêmica**:
-- 3+ Resources com 5 endpoints cada (GET, GET by ID, POST, PUT, DELETE)
-- Relacionamento com chave estrangeira (@relation) entre Entrevista, Candidato e Entrevistador
-- GET com include retornando dados de tabelas relacionadas
-- Swagger documentado para todos os endpoints
-- Validações com Zod para corpo da requisição e parâmetros
-- Integração com banco PostgreSQL via Prisma
+O sistema engloba desde o cadastro de candidatos até o controle de entrevistas, trazendo boas práticas de desenvolvimento, organização de código, tipagem, documentação e integração completa entre frontend e backend.
 
-## Como executar o projeto
+# 🚀 Funcionalidades do Sistema
 
-A seguir um passo a passo:
+### Backend
 
-1. **Clonar o repositório**
-  ```bash
-  git clone https://github.com/livmrb/Sistema_de_Recrutamento.git
-  cd Sistema_de_Recrutamento
-  ```
-2. **Instalar dependências**
-  ```bash
-  npm install
-  # ou
-  yarn install
-  ```
+* Cadastro e gerenciamento de **Candidatos**
+* Cadastro e gerenciamento de **Entrevistadores**
+* Controle de **Entrevistas**
+* Relacionamento entre tabelas com Prisma
+* Autenticação com JWT
+* Validação de dados com Zod
+* Documentação completa com Swagger
+* CRUD completo para todos os recursos
 
-3. **Configurar variáveis de ambiente** <br>
-Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
-  ```bash
- # Exemplo para PostgreSQL
+### **Frontend**
+
+* Interface web moderna para gerenciamento do sistema
+* Fluxos completos para:
+
+  * Cadastro, listagem e edição de candidatos
+  * Cadastro, listagem e edição de entrevistadores
+  * Cadastro e controle de entrevistas
+* Consumo total da API usando Axios
+* Layout responsivo
+* Feedback ao usuário (Toastify)
+* Navegação organizada com React Router
+
+---
+
+# 🛠️ Tecnologias Utilizadas
+
+### Backend
+
+* **TypeScript**
+* **Node.js + Express**
+* **Prisma ORM**
+* **PostgreSQL**
+* **Zod** (validações)
+* **JWT** (autenticação)
+* **bcrypt** (hash de senhas)
+* **Swagger** (documentação)
+* **dotenv**
+* **ts-node-dev**
+
+### Frontend
+
+* **React + Vite**
+* **TypeScript**
+* **Axios**
+* **React Router DOM**
+* **React Hook Form**
+* **Zod** (validações)
+* **Toastify**
+* **Lucide Icons**
+* **TailwindCSS** (se aplicável)
+* **Context API** para autenticação (se existir login)
+* Estilização modular
+
+---
+
+# 📁 Estrutura do Projeto
+
+### Monorepo (se estiver no mesmo repositório)
+
+```
+/Sistema_de_Recrutamento
+ ├── backend
+ └── frontend
+```
+
+### Backend
+
+```
+src/
+ ├── routes/
+ ├── controllers/
+ ├── services/
+ ├── schemas/ (Zod)
+ ├── prisma/
+ ├── middlewares/
+ ├── utils/
+ └── server.ts
+```
+
+### Frontend
+
+```
+src/
+ ├── pages/
+ ├── components/
+ ├── services/api.ts
+ ├── hooks/
+ ├── context/
+ ├── layouts/
+ ├── utils/
+ └── main.tsx
+```
+
+---
+
+# ⚙️ Como Executar o Projeto
+
+## 🗂️ 1. Clonar o repositório
+
+```
+git clone https://github.com/livmrb/Sistema_de_Recrutamento.git
+cd Sistema_de_Recrutamento
+```
+
+---
+
+# 🖥️ Backend
+
+## 📦 2. Instalar dependências
+
+```
+cd backend
+npm install
+```
+
+## ⚙️ 3. Configurar variáveis de ambiente
+
+Crie um arquivo **.env** na pasta **backend/**:
+
+```
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/sistema_recrutamento"
 PORT=3000
 JWT_SECRET="sua_chave_secreta"
+```
 
-  ```
+## 🗄️ 4. Executar migrações
 
-4. **Executar migrações do banco de dados**
-  ```bash
-  npx prisma migrate dev
-  # ou
-  npx prisma db push
-  ```
-  
-5. **Iniciar aplicação**
-  ```bash
-  npm run dev
-  # ou
-  yarn dev
-  ```
-6. **Acessar a API**
- ```bash
-# A API estará disponível em:
-http://localhost:3000
-# A documentação Swagger estará em:
-http://localhost:3000/api-docs
-  ```
+```
+npx prisma migrate dev
+```
 
- 
+ou
+
+```
+npx prisma db push
+```
+
+## ▶ 5. Iniciar o servidor
+
+```
+npm run dev
+```
+
+A API ficará disponível em:
+👉 [http://localhost:3000](http://localhost:3000)
+
+Documentação Swagger:
+👉 [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+---
+
+# 🌐 Frontend
+
+## 📦 1. Instalar dependências
+
+```
+cd frontend
+npm install
+```
+
+## ⚙️ 2. Configurar URL da API
+
+No arquivo:
+
+```
+src/services/api.ts
+```
+
+Ajuste a URL:
+
+```ts
+export const api = axios.create({
+  baseURL: "http://localhost:3000",
+});
+```
+
+## ▶ 3. Rodar aplicação
+
+```
+npm run dev
+```
+
+Acesse no navegador:
+👉 [http://localhost:5173](http://localhost:5173)
+
+
+# 🧑‍🎓 Requisitos Atendidos (Backend)
+
+✔ 3+ resources com 5 endpoints cada (GET, GET by ID, POST, PUT, DELETE)
+✔ Relacionamentos com chave estrangeira (Entrevista → Candidato/Entrevistador)
+✔ GET com include retornando dados relacionados
+✔ Swagger documentado
+✔ Validações via Zod
+✔ Persistência com PostgreSQL + Prisma
+
+
+
+Se quiser, posso **gerar uma versão em inglês**, deixar tudo mais visual, incluir **prints do sistema**, ou montar um **modelo de README mais estilizado com badges, emojis e sessões colapsáveis**.
