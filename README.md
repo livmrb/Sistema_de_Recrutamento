@@ -18,7 +18,7 @@ O Sistema de Recrutamento é uma aplicação full-stack que permite:
 - Express.js
 - TypeScript 
 - Prisma ORM 
-- PostgreSQL -
+- PostgreSQL
 - Zod
 - Swagger
 - React + Vite
