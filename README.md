@@ -13,11 +13,19 @@ O Sistema de Recrutamento é uma aplicação full-stack que permite:
 - Banco de dados PostgreSQL via Prisma ORM
 - Deploy completo (frontend + backend + banco) na nuvem
 
-# Tecnologias Utilizadas
-Backend: 
-- Node.js, Express.js, TypeScript, Prisma ORM, PostgreSQL, Zod, Swagger
-Frontend:
-- React + Vite, TypeScript, Axios, Zod, React Hook Form
+# Tecnologias Utilizadas 
+- Node.js
+- Express.js
+- TypeScript 
+- Prisma ORM 
+- PostgreSQL -
+- Zod
+- Swagger
+- React + Vite
+- TypeScript
+- Axios
+- Zod 
+- React Hook Form
 
 # Estrutura do Projeto
 /backend <br>
