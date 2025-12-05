@@ -77,6 +77,7 @@ Model de exemplo:
 - Deploy completo
 - Axios para integração
 
+
 # Como Rodar o Projeto Localmente
 
 - Backend: <br>
