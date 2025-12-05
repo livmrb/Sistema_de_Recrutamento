@@ -1,6 +1,15 @@
 # Sistema de Recrutamento
 API e Frontend completos para gerenciamento de vagas, candidatos e aplicações, utilizando Node.js, Express, TypeScript, Prisma, PostgreSQL, Zod, Swagger e React. <br>
 
+Membros do grupo: Amanda Voss, Lívia Maria e Romana Cristina.
+
+# Deploy
+- Backend Deploy: https://sistema-de-recrutamento.onrender.com
+- Frontend Deploy:https://sistema-de-recrutamento-1.onrender.com
+
+# Vídeo de Demonstração 
+- Youtube: https://youtu.be/D7NW5aFv3L8
+
 # Visão Geral
 O Sistema de Recrutamento é uma aplicação full-stack que permite: 
 - Cadastro, listagem, atualização e remoção de vagas 
@@ -54,10 +63,6 @@ package.json <br><br>
 Model de exemplo:
 - Aplicacao { id, candidatoId, vagaId, relação com Candidato e Vaga }
 
-# Deploy
-- Backend Deploy: https://
-- Frontend Deploy: https://
-- Banco PostgreSQL: https://
 
 # Funcionalidades exigidas
 - CRUD para Vagas
@@ -72,9 +77,6 @@ Model de exemplo:
 - Deploy completo
 - Axios para integração
 
-# Vídeo de Demonstração 
-https://youtu.be/D7NW5aFv3L8
-...
 
 # Como Rodar o Projeto Localmente
 
