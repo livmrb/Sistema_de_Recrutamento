@@ -55,9 +55,8 @@ Model de exemplo:
 - Aplicacao { id, candidatoId, vagaId, relação com Candidato e Vaga }
 
 # Deploy
-- Backend Deploy: https://
-- Frontend Deploy: https://
-- Banco PostgreSQL: https://
+- Backend Deploy: https://sistema-de-recrutamento.onrender.com
+- Frontend Deploy:https://sistema-de-recrutamento-1.onrender.com
 
 # Funcionalidades exigidas
 - CRUD para Vagas
