@@ -20,11 +20,8 @@ export const idParamSchema = z.object({
 
 export const loginSchema = z
   .object({
-    email: z.string().email({ message: 'Formato de e-mail invalido.' }),
-    senha: z.string().min(4, { message: 'A senha deve ter pelo menos 4 caracteres.' }).optional(),
-    password: z.string().min(4, { message: 'A senha deve ter pelo menos 4 caracteres.' }).optional(),
+    email: z.string().email({ message: 'Formato de e-mail invalido.' }).optional(),
+    senha: z.string().optional(),
+    password: z.string().optional(),
   })
-  .refine((data) => data.senha || data.password, {
-    message: 'A senha e obrigatoria.',
-    path: ['senha'],
-  });
+  .optional();

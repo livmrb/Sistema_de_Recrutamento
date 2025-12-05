@@ -18,8 +18,9 @@ model Candidato {
   id           Int    @id @default(autoincrement())
   nome         String
   email        String @unique
-  telefone     String
-  curriculoURL String
+  cargo        String
+  telefone     String?
+  curriculoURL String?
   entrevistas  Entrevista[]
 }
 

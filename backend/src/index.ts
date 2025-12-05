@@ -1,5 +1,6 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
 import { swaggerSpec } from './config/swagger'; 
 
 import authRoutes from './routes/AuthRoute';
@@ -11,6 +12,7 @@ import entrevistaRoutes from './routes/EntrevistaRoute';
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

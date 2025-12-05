@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 
 const loginSchema = z.object({
-  email: z.string().email("Email invalido"),
-  password: z.string().min(4, "A senha deve ter pelo menos 4 caracteres"),
+  usuario: z.string().min(1, "Informe o usuario"),
+  password: z.string().min(1, "Informe a senha"),
 });
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -18,24 +19,26 @@ export default function Login() {
   } = useForm({ resolver: zodResolver(loginSchema) });
 
   const onSubmit = async (data: any) => {
-    try {
-      setLoading(true);
-      const res = await axios.post(
-        "http://localhost:3000/auth/login",
-        data
-      );
+    setLoading(true);
 
-      const { token, user } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-
-      alert("Login realizado com sucesso!");
-      // redirecionar para o dashboard futuramente
-    } catch (err) {
-      alert("Credenciais invalidas. Tente novamente.");
-    } finally {
+    if (!(data.usuario === "admin" && data.password === "admin")) {
       setLoading(false);
+      alert("Usuario ou senha invalidos");
+      return;
     }
+
+    const fakeUser = { usuario: data.usuario, nome: "Admin" };
+    localStorage.setItem("token", "dev-token");
+    localStorage.setItem("user", JSON.stringify(fakeUser));
+
+    navigate("/home", { replace: true });
+    setTimeout(() => {
+      if (window.location.pathname !== "/home") {
+        window.location.href = "/home";
+      }
+    }, 50);
+
+    setLoading(false);
   };
 
   return (
@@ -46,15 +49,15 @@ export default function Login() {
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-gray-700 mb-1">Email</label>
+            <label className="block text-gray-700 mb-1">Usuario</label>
             <input
-              type="email"
-              {...register("email")}
+              type="text"
+              {...register("usuario")}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="seuemail@exemplo.com"
+              placeholder="Digite seu usuario"
             />
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email.message}</p>
+            {errors.usuario && (
+              <p className="text-sm text-red-500">{errors.usuario.message}</p>
             )}
           </div>
 

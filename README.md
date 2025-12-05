@@ -1,37 +1,90 @@
 # Sistema de Recrutamento
+API e Frontend completos para gerenciamento de vagas, candidatos e aplicações, utilizando Node.js, Express, TypeScript, Prisma, PostgreSQL, Zod, Swagger e React. <br>
 
-Aplicacao separada em duas partes independentes:
-- **backend/**: API Express + Prisma + Swagger.
-- **frontend/**: SPA Vite/React com Tailwind.
+# Visão Geral
+O Sistema de Recrutamento é uma aplicação full-stack que permite: 
+- Cadastro, listagem, atualização e remoção de vagas 
+- Cadastro de candidatos
+- Criação de aplicações (candidato aplicando para vaga)
+- Relação vaga → aplicações e candidato → aplicações
+- Validação completa com Zod
+- Integração entre frontend e backend usando Axios
+- Documentação interativa com Swagger
+- Banco de dados PostgreSQL via Prisma ORM
+- Deploy completo (frontend + backend + banco) na nuvem
 
-## Estrutura
-```
-backend/
-  src/            # Codigo da API (rotas, controllers, middlewares, schemas)
-  prisma/         # Schema e migracoes
-  package.json    # Scripts e dependencias do backend
-frontend/
-  src/            # React (paginas, componentes, hooks, services)
-  package.json    # Scripts e dependencias do frontend
-```
+# Tecnologias Utilizadas 
+- Node.js
+- Express.js
+- TypeScript 
+- Prisma ORM 
+- PostgreSQL
+- Zod
+- Swagger
+- React + Vite
+- TypeScript
+- Axios
+- Zod 
+- React Hook Form
 
-## Como rodar o backend
-```
-cd backend
-npm install
-# criar arquivo .env com DATABASE_URL, PORT, JWT_SECRET etc
-npx prisma migrate dev   # ou prisma db push
-npm run dev              # desenvolvimento
-npm run build && npm start
-```
-Swagger: http://localhost:3000/api-docs
+# Estrutura do Projeto
+/backend <br>
+/src <br>
+/routes <br>
+/controllers <br>
+/schemas <br>
+/services <br>
+/prisma <br>
+swagger.json <br>
+package.json <br><br>
 
-## Como rodar o frontend
-```
-cd frontend
-npm install
-npm run dev
-# build: npm run build; preview: npm run preview
-```
+/frontend<br>
+/src <br>
+/pages <br>
+/components <br>
+/services <br>
+/schemas <br>
 
-Ajuste a `baseURL` em `frontend/src/services/api.ts` para apontar para o host do backend quando necessario.
+# Recursos da API 
+- Vagas (/vagas): GET, GET/:id, POST, PUT/:id, DELETE/:id
+- Candidatos (/candidatos): GET, GET/:id, POST, PUT/:id, DELETE/:id
+- Aplicações (/aplicacoes): GET, GET/:id, POST, PUT/:id, DELETE/:id -> Possui relação com Vagas e Candidatos através de vagaId e candidatoId
+
+# Relações no Prisma
+Model de exemplo:
+- Aplicacao { id, candidatoId, vagaId, relação com Candidato e Vaga }
+
+# Deploy
+- Backend Deploy: https://
+- Frontend Deploy: https://
+- Banco PostgreSQL: https://
+
+# Funcionalidades exigidas
+- CRUD para Vagas
+- CRUD para Candidatos
+- CRUD para Aplicações
+- Relações entre tabelas
+- GET com include
+- Swagger documentado
+- Validação com Zod no front e back
+- Frontend e backend em TypeScript
+- Banco via Prisma + PostgreSQL
+- Deploy completo
+- Axios para integração
+
+# Vídeo de Demonstração 
+
+...
+
+# Como Rodar o Projeto Localmente
+
+- Backend: <br>
+cd backend <br>
+npm install <br>
+npx prisma migrate dev <br>
+npm run dev <br>
+
+- Frontend: <br>
+cd frontend <br>
+npm install <br>
+npm run dev <br>

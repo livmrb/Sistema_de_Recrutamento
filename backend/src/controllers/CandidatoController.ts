@@ -15,8 +15,13 @@ export default {
   },
 
   async create(req: Request, res: Response) {
-    const novo = await CandidatoService.create(req.body);
-    res.status(201).json(novo);
+    try {
+      const novo = await CandidatoService.create(req.body);
+      res.status(201).json(novo);
+    } catch (error: any) {
+      const msg = error?.message || 'Erro ao criar candidato';
+      return res.status(400).json({ error: msg });
+    }
   },
 
   async update(req: Request, res: Response) {
@@ -27,7 +32,11 @@ export default {
 
   async remove(req: Request, res: Response) {
     const id = parseInt(req.params.id);
-    await CandidatoService.remove(id);
-    res.status(204).send();
+    try {
+      await CandidatoService.remove(id);
+      res.status(204).send();
+    } catch (error: any) {
+      res.status(400).json({ error: error?.message || 'Erro ao deletar candidato' });
+    }
   },
 };
